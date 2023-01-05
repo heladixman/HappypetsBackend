@@ -1,6 +1,7 @@
 import express from "express";
 import {
     getStores,
+    getStoresCount,
     getStoreById,
     createStore,
     updateStore,
@@ -11,6 +12,7 @@ import { verifyUser, adminOnly } from "../middleware/AuthUser.js";
 const router = express.Router();
 
 router.get('/stores', getStores);
+router.get('/stores/total', getStoresCount);
 router.get('/store/:id', getStoreById);
 router.post('/store', createStore);
 router.patch('/store/:id', updateStore);

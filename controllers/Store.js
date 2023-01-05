@@ -25,6 +25,30 @@ export const getStores = async(req, res) =>{
     }
 }
 
+export const getStoresCount = async(req, res) =>{
+    try {
+        const response = await Stores.count({
+            attributes:[['id','storeId'],['userId','userId'],['storeName','storeName'],['storeProfile','storeProfile'],['storeLevel','storeLevel'],['storeStatus','storeStatus']],
+            include:[{
+                model: Users
+            }]
+        });
+        res.status(200).json({
+            code: "200",
+            status: "OK",
+            data: response
+        });
+    } catch (error) {
+        res.status(500).json({
+            code: "500",
+            status: "Internal_Server_Error",
+            errors: [{
+                msg: error.message
+            }]
+        });
+    }
+}
+
 export const getStoreById = async(req, res) =>{
     try {
         const response = await Stores.findOne({

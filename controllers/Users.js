@@ -22,6 +22,27 @@ export const getUsers = async(req, res) =>{
     }
 }
 
+export const getUsersTotal = async(req, res) =>{
+    try {
+        const response = await User.count({
+            attributes:[['id','id'],['Ufname','userFullName'],['Uname','userName'],['email','userEmail'],['Uphone','userPhone'],['UStatus','userStatus'],['Urole','userRole']]
+        });
+        res.status(200).json({
+            code: "200",
+            status: "OK",
+            data: response
+        });
+    } catch (error) {
+        res.status(500).json({
+            code: "500",
+            status: "Internal_Server_Error",
+            errors: [{
+                msg: error.message
+            }]
+        });
+    }
+}
+
 export const getUserById = async(req, res) =>{
     try {
         const response = await User.findOne({

@@ -23,9 +23,9 @@ import OrderDetailRoute from "./routes/OrderDetailRoute.js";
 // define & query database
 import database from "./config/Database.js";
 
-(async()=>{
-    await database.sync();
-})();
+// (async()=>{
+//     await database.sync();
+// })();
 
 dotenv.config()
 
