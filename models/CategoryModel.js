@@ -21,7 +21,7 @@ const Category = database.define('category',{
     },
     categoryId:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         validate:{
             notEmpty: true
         }

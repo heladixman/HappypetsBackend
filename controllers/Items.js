@@ -1,6 +1,9 @@
+import Sequelize, { where } from 'sequelize'
 import Attribut from "../models/AttributModel.js";
 import Category from "../models/CategoryModel.js";
 import Items from "../models/ItemsModel.js";
+import Orders from "../models/OrderModel.js";
+import PaymentMethod from "../models/PaymentMethodModel.js";
 import Stores from "../models/StoreModel.js";
 import Users from "../models/UserModel.js";
 
@@ -228,6 +231,53 @@ export const dashboardAdminData = async (req, res) =>{
                     {icon: "BiStore", amount: response3, title: 'Total Toko', iconColor: 'rgb(255, 244, 229)', iconBg: 'rgb(254, 201, 15)'},
                     {icon: "AiOutlineUser", amount: response4, title: 'Total User', iconColor: 'rgb(0, 194, 146)', iconBg: 'rgb(235, 250, 242)'},
                 ]
+            }]);
+        }
+        
+    } catch (error) {
+        res.status(500).json({
+            code: "500",
+            status: "Internal_Server_Error",
+            errors: [{
+                msg: error.message
+            }]
+        });
+    }
+}
+
+export const dashboardAdminData2 = async (req, res) =>{
+    try {
+        const response = await PaymentMethod.findAll({
+            attributes: ['paymentName', 'paymentCategory'],
+            include: [
+                {
+                  model: Orders,
+                  attributes: [
+                    [Sequelize.fn('SUM', Sequelize.col('orderTotal')), 'total']
+                  ],
+                  required: true,
+                  where: {
+                    paymentmethodId: Sequelize.col('paymentmethod.id')
+                  },
+                  group: ['paymentmethodId'],
+                }
+              ],
+            group: ['paymentmethod.id']
+        })
+        if (!response){
+            return res.status(400).json({
+                code: "400",
+                status: "Bad_Request",
+                errors: [{
+                    msg: "Tidak ada record metode pembayaran"
+                }]
+            })
+        }
+        else {
+            return res.status(200).json([{
+                code: "200",
+                status: "OK",
+                data: response
             }]);
         }
         

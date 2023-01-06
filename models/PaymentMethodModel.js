@@ -14,7 +14,11 @@ const PaymentMethod = database.define('paymentmethod',{
     },
     paymentName:{
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
+    },
+    paymentCategory:{
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     paymentDesc:{
         type: DataTypes.TEXT,

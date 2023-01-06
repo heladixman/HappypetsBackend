@@ -9,6 +9,7 @@ module.exports = {
     {
       uuid: uuidv4(),
       paymentName: 'Bayar Ditoko',
+      paymentCategory: "Bayar Ditoko",
       paymentDesc: 'Silahkan bayar pesanan sesuai dengan biaya total yang tertera',
       paymentStatus: true,
       createdAt: new Date(),
@@ -17,6 +18,7 @@ module.exports = {
     {
       uuid: uuidv4(),
       paymentName: 'Bayar Ditempat',
+      paymentCategory: "Bayar Ditempat",
       paymentDesc: 'Bayar pesanan sesuai dengan biaya total yang tertera ketika pesanan sampai',
       paymentStatus: true,
       createdAt: new Date(),
