@@ -44,6 +44,41 @@ const Items = database.define('item',{
             notEmpty: true
         }
     },
+    itemImage1:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
+    },
+    itemImage2:{
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate:{
+            notEmpty: true
+        }
+    },
+    itemImage3:{
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate:{
+            notEmpty: true
+        }
+    },
+    itemImage4:{
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate:{
+            notEmpty: true
+        }
+    },
+    itemImage5:{
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate:{
+            notEmpty: true
+        }
+    },
     itemStock:{
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -55,6 +90,14 @@ const Items = database.define('item',{
     itemPrice:{
         type: DataTypes.INTEGER,
         allowNull: true,
+        validate:{
+            notEmpty: true
+        }
+    },
+    itemSold:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
         validate:{
             notEmpty: true
         }
